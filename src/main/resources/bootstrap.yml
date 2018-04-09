@@ -3,7 +3,7 @@ spring:
     name: gateway
 
 server:
-  port: 8080
+  port: 8081
 
 zuul:
   routes:
@@ -18,7 +18,7 @@ mark-service:
     listOfServers: http://yong-mark-service-webmvc:9003
 security-service:
   ribbon:
-    listOfServers: http://yong-security:8081
+    listOfServers: http://yong-security:8082
 
 ribbon:
   eureka:
