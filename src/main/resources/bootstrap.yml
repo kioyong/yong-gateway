@@ -12,6 +12,7 @@ zuul:
       serviceId: mark-service
     security-service:
       path: /security/**
+      stripPrefix: true
       serviceId: security-service
 mark-service:
   ribbon:
@@ -32,8 +33,39 @@ security:
     client:
       clientId: yong
       clientSecret: passw0rd
-      accessTokenUri: http://yong-security:8081/oauth/token
-      userAuthorizationUri: http://yong-security:8081/oauth/authorize
+      accessTokenUri: http://yong-security:8082/oauth/token
+      userAuthorizationUri: http://yong-security:8082/oauth/authorize
     resource:
-      userInfoUri: http://yong-security:8081/user/me
+      userInfoUri: http://yong-security:8082/user/me
       preferTokenInfo: false
+
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 120000
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 120000
+        readTimeout: 120000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: 1500
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 120000
+      circuitBreaker:
+        forceClosed: true
+      fallback:
+        enabled: false
+
+
+logging:
+  level:
+    com.yong: DEBUG
+    org.springframework.security: DEBUG
