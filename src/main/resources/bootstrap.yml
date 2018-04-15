@@ -16,10 +16,10 @@ zuul:
       serviceId: security-service
 mark-service:
   ribbon:
-    listOfServers: http://139.199.189.64:9003
+    listOfServers: http://yong-mark-service-webmvc:9003
 security-service:
   ribbon:
-    listOfServers: http://139.199.189.64:8082
+    listOfServers: http://yong-security:8082
 
 ribbon:
   eureka:
@@ -33,10 +33,10 @@ security:
     client:
       clientId: yong
       clientSecret: passw0rd
-      accessTokenUri: http://139.199.189.64:8082/oauth/token
-      userAuthorizationUri: http://139.199.189.64:8082/oauth/authorize
+      accessTokenUri: http://yong-security:8082/oauth/token
+      userAuthorizationUri: http://yong-security:8082/oauth/authorize
     resource:
-      userInfoUri: http://139.199.189.64:8082/user/me
+      userInfoUri: http://yong-security:8082/user/me
       preferTokenInfo: false
 
 ribbon:
