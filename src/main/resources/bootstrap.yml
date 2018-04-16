@@ -27,8 +27,7 @@ ribbon:
 yong:
   unprotected:
     - register
-
-security:s
+security:
   oauth2:
     client:
       clientId: yong
